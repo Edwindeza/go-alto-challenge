@@ -1,15 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../atoms/Logo';
-
-const Nav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  padding: 10px;
-`;
 
 const NavList = styled.ul`
   list-style: none;
@@ -17,29 +9,59 @@ const NavList = styled.ul`
   gap: 20px;
 `;
 
-const NavItem = styled.li``;
+const NavItem = styled.li`
+`;
+const NavItemLink = styled(NavLink)`
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  transition: 0.5s;
+  :hover{
+    color: rgb(209, 92, 0);
+  }
+  &.active{
+    color: rgb(209, 92, 0);
+  }
+`
 
 function Navbar(props) {
   return (
-    <Nav>
-      <Link to="/">
-        <Logo src={props.logoSrc} alt={props.logoAlt} />
-      </Link>
+    <>
+      <NavLink to="/">
+        <Logo />
+      </NavLink>
       <NavList>
         <NavItem>
-          <Link to="/">Home</Link>
+          <NavItemLink
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+            to="/">Home</NavItemLink>
         </NavItem>
         <NavItem>
-          <Link to="/about">About</Link>
+          <NavItemLink
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+            to="/about">About</NavItemLink>
         </NavItem>
         <NavItem>
-          <Link to="/blog">Blog</Link>
+          <NavItemLink
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+            to="/blog">Blog</NavItemLink>
         </NavItem>
         <NavItem>
-          <Link to="/contact">Contact</Link>
+          <NavItemLink
+            className={({ isActive }) =>
+              isActive ? "active" : ""
+            }
+            to="/contact">Contact</NavItemLink>
         </NavItem>
       </NavList>
-    </Nav>
+    </>
   );
 }
 

@@ -1,9 +1,18 @@
 import React from 'react';
+import logo from '../../assets/logo.svg';
+import styled from 'styled-components';
+
+const logoAlt = 'My Blog';
+
+
+const StyledImg = styled.img`
+  height: 100px;
+`;
 
 function Logo(props) {
   return (
     <div className="logo">
-      <img src={props.src} alt={props.alt} />
+      <StyledImg src={logo} alt={logoAlt} ></StyledImg>
     </div>
   );
 }

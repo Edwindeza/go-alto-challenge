@@ -5,14 +5,14 @@ import Logo from '../components/Logo';
 import posts from '../../data/post';
 
 const BlogPage = () => {
-  const [posts, setPosts] = useState(posts);
+  const [localPosts, setLocalPosts] = useState(posts);
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
 
-  const filteredPosts = posts.filter((post) =>
+  const filteredPosts = localPosts.filter((post) =>
     post.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
