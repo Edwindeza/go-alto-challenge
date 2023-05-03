@@ -1,36 +1,45 @@
 import React from 'react';
 import styled from 'styled-components';
 import { type_texts } from '../../data/types_text';
+import { device } from '../../data/devices';
 
+const commonStyles = `
+	font-size: 14px;
+	margin:0px;
+	flex-direction: width:100%;
+	text-align: justify;
+`
 
 const TitleText = styled.h2`
-	font-size: 14px;
+	${commonStyles}
 	font-weight:bold;
-	margin:0px;
+	color: ${props => props.color || 'normal'};
+	padding: ${props => props.padding || 'normal'};
 `;
 
 const BitDescription = styled.p`
-	font-size:14px;
-	margin: 0px;	
+	${commonStyles}
+	color: ${props => props.color || 'normal'};
+	padding: ${props => props.padding || 'normal'};
 `
 const Description = styled.p`
-	font-size:14px;
-	margin: 0px;	
+	${commonStyles}
+	padding: ${props => props.padding || 'normal'};
+	color: ${props => props.color || 'normal'};
+  @media ${device.tablet} {
+		max-width: ${props => props.maxWidth || '100%'};
+  }
 `
 
-function DefaultImage(props) {
+function Text(props) {
 	switch(props.type){
-		case type_texts[title]:
-			return (<TitleText> { props.text } </TitleText>);
-		case type_texts[bit_description]:
-			return (<BitDescription> { props.text } </BitDescription>);
-			break;
+		case type_texts['title']:
+			return (<TitleText color={props.color} padding={props.padding}> { props.text } </TitleText>);
+		case type_texts['bit_description']:
+			return (<BitDescription color={props.color} padding={props.padding}> { props.text } </BitDescription>);
 		default:
-			return (<Description> { props.text } </Description>);
+			return (<Description maxWidth={props.maxWidth} color={props.color} padding={props.padding}> { props.text } </Description>);
 	}
-	return (    
-		<StyledImg src={img} alt={logoAlt} ></StyledImg>
-	);
 }
 
-export default DefaultImage;
+export default Text;

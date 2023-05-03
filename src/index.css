@@ -1,7 +1,6 @@
 *{
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  min-height: calc(100% - 208.5px);
 }
 body {
   margin: 0;
@@ -20,4 +19,29 @@ body, #root{
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+/* Utils */
+.container{ 
+  max-width: 100%;
+  margin: auto;
+}
+@media(min-width: 576px){
+  .container{
+    max-width: 540px;
+  }
+}
+@media(min-width: 768px){
+  .container{
+    max-width: 720px;
+  }
+}
+@media(min-width: 992px){
+  .container{
+    max-width: 960px;
+  }
+}
+@media(min-width: 1200px){
+  .container{
+    max-width: 1140px;
+  }
 }

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect} from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -7,19 +7,23 @@ import {
 import HomePage from './atomic-design/pages/HomePage';
 import AboutPage from './atomic-design/pages/AboutPage';
 import DefaultTemplate from './atomic-design/templates/DefaultTemplate';
+import ContactPage from "./atomic-design/pages/ContactPage";
+import BlogPage from "./atomic-design/pages/BlogPage";
+import PostReadingPage from "./atomic-design/pages/PostReadingPage";
+import PostCreationPage from "./atomic-design/pages/PostCreationPage";
+import posts from "./data/post";
 
 function App() {
-  const contactInfo = {
-    email: 'contact@example.com',
-    phone: '123-456-7890',
-  };
 
-  // const savedPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+  // Inicializando post
+  useEffect(() => {
+    localStorage.setItem('go-alto-posts', JSON.stringify(posts))
+  }, [])
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <DefaultTemplate
-                contactInfo={contactInfo} />,
+      element: <DefaultTemplate />,
       children: [
         {
           path: "/",
@@ -28,6 +32,22 @@ function App() {
         {
           path: "/about",
           element: <AboutPage />,
+        },
+        {
+          path: "/blog",
+          element: <BlogPage/>,
+        },
+        {
+          path: "/blog/detail/:postId",
+          element: <PostReadingPage/>
+        },
+        {
+          path: "/blog/create",
+          element: <PostCreationPage/>
+        },
+        {
+          path: "/contact",
+          element: <ContactPage/>,
         },
       ],
     },

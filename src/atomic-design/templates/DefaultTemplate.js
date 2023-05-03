@@ -10,26 +10,25 @@ const Footer = styled.footer`
   padding: 20px 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   p {
     font-size: 14px;
   }
 `
 
 const Container = styled.main`
-  min-height: calc(100vh - 229.5px);
+  min-height: calc(100vh - 210px);
 `
 
 function DefaultTemplate(props) {
   return (
     <>
       <Header />
-      <Container>
+      <Container className='container'>
         <Outlet />
       </Container>
-      <Footer>
-        <p>Contact: {props.contactInfo.phone}</p>
-        <p>Email: {props.contactInfo.email}</p>
+      <Footer >
+        <p>Copyright  Ⓒ By Edwin Deza</p>
       </Footer>
     </>
   );

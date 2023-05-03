@@ -8,12 +8,13 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 
 function Header(props) {
   return (
-    <Nav>
+    <Nav className='container'>
       <Navbar/>
       <SearchBar/>
     </Nav>

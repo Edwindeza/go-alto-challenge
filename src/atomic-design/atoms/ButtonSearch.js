@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 const Button = styled.button`
     background-color: #D15C00;
-    color: white; 
+    color: white;
     height: 54px;
     border: 0px;
     margin-left:1px;
     font-weight: bold;
+    cursor:pointer;
 `
 
 function ButtonSearch(props) {
