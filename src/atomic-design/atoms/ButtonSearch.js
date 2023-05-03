@@ -13,7 +13,9 @@ const Button = styled.button`
 
 function ButtonSearch({searchButton}) {
   return (
-    <Button onClick={searchButton}>
+    <Button
+      onClick={searchButton}
+      data-testid="buttonSearch">
         SEARCH
     </Button>
   );

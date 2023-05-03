@@ -25,7 +25,7 @@ const NavItemLink = styled(NavLink)`
   }
 `
 
-function Navbar(props) {
+function Navbar() {
   return (
     <>
       <NavLink to="/">

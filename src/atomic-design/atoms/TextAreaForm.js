@@ -9,6 +9,7 @@ export const TextAreaForm = ({ id, value, onChange, required, minLength }) => {
       onChange={onChange}
       required={required}
       minLength={minLength}
+      data-testid={`input-test-${id}`}
     />
   );
 };

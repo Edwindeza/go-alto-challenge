@@ -16,7 +16,7 @@ const Input = styled.input`
 function InputSearch({onChange}) {
 
   return (
-    <Input type='text' onChange={onChange} placeholder='Search value' />
+    <Input type='text' data-testid="inputSearch" onChange={onChange} placeholder='Search value' />
   );
 }
 

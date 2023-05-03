@@ -9,6 +9,7 @@ export const InputForm = ({ type, id, value, onChange, required, minLength }) =>
       value={value}
       onChange={onChange}
       required={required}
+      data-testid={`input-test-${id}`}
       minLength={minLength}
     />
   );
