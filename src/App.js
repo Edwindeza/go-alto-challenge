@@ -12,6 +12,7 @@ import BlogPage from "./atomic-design/pages/BlogPage";
 import PostReadingPage from "./atomic-design/pages/PostReadingPage";
 import PostCreationPage from "./atomic-design/pages/PostCreationPage";
 import posts from "./data/post";
+import PostEditionPage from "./atomic-design/pages/PostEditionPage";
 
 function App() {
 
@@ -34,8 +35,9 @@ function App() {
           element: <AboutPage />,
         },
         {
-          path: "/blog",
+          path: "/blog/",
           element: <BlogPage/>,
+          queryParams: ['search'],
         },
         {
           path: "/blog/detail/:postId",
@@ -44,6 +46,10 @@ function App() {
         {
           path: "/blog/create",
           element: <PostCreationPage/>
+        },
+        {
+          path: "/blog/edit/:postId",
+          element: <PostEditionPage/>
         },
         {
           path: "/contact",

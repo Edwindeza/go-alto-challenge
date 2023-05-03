@@ -8,7 +8,6 @@ const PostCreationPage = (props) => {
   const posts = getLocalStorageItem('posts')
   const onSubmit = (newPost) => {
     posts.push(newPost)
-    console.log('posts: ', posts)
     setLocalStorageItem('posts', posts)
     navigate("/blog");
   }

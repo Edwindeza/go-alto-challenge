@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { InputForm, TextAreaForm } from "./../atoms/";
 import styled from "styled-components";
+import { device } from "../../data/devices";
 
 const FormData = styled.form`
   max-width: 300px;
   margin: auto;
+  @media(${device.laptop}){
+    max-width: 600px;
+  }
 `
 const FormGroup = styled.div`
   padding-bottom: 15px;
@@ -27,30 +31,49 @@ const FormGroup = styled.div`
     height: 54px;
   }
   textarea{
-    height: 84px;
+    height: 300px;
   }
 `
-
+const SaveButton = styled.div`
+  display:flex;
+  justify-content: flex-end;
+  button{
+    cursor: pointer;
+    background-color: Black;
+    color: white;
+    padding: 5px 15px;
+    height:54px;
+    display: block;
+    width: fit-content;
+    text-decoration: none;
+    transition:0.5s;
+    border-radius: 4px;
+    border: 0;
+  }
+`
 
 const FormPost = ({ onSubmit, postDetail }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
   const [idPost, setIdPost] = useState("");
+  const [createAt, setCreateAt] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const newPost = {
-      id: Date.now(),
+      id: idPost ? idPost : Date.now(),
       title,
       author,
       content,
-      createdAt: new Date().toISOString(),
+      createdAt: createAt ? createAt : new Date().toISOString(),
     };
     onSubmit(newPost);
     setTitle("");
     setAuthor("");
     setContent("");
+    setIdPost("");
+    setCreateAt("");
   };
 
   const handleTitleChange = (event) => {
@@ -66,13 +89,14 @@ const FormPost = ({ onSubmit, postDetail }) => {
   };
 
   useEffect( () => {
-    console.log('postDetail:', postDetail)
-    if(postDetail){
+    if(postDetail && Object.keys(postDetail).length > 0){
       setTitle(postDetail.title)
       setAuthor(postDetail.author)
       setContent(postDetail.content)
+      setIdPost(postDetail.id)
+      setCreateAt(postDetail.createAt)
     }
-  }, [postDetail])
+  }, [postDetail]);
 
   return (
     <FormData onSubmit={handleSubmit}>
@@ -109,7 +133,11 @@ const FormPost = ({ onSubmit, postDetail }) => {
         />
       </FormGroup>
       <FormGroup className="form-group buttons">
-        <button type="submit">Save post</button>
+        <SaveButton>
+          <button type="submit">
+            Save post
+          </button>
+        </SaveButton>
       </FormGroup>
     </FormData>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import postImage from '../../assets/post_image.webp'
+import Text from '../atoms/Text';
 
 const PostCardContainer = styled.div`
   padding: 10px;
@@ -106,7 +107,7 @@ const ContentPost = styled.p`
 `
 
 function PostCard(props) {
-  const [newDate, setNewDate] = useState("")
+  const [dateFormat, setDateFormat] = useState("")
   useEffect(() => {
     if(props.createdAt){
       const date = new Date(props.createdAt); // obtiene la fecha actual
@@ -114,7 +115,7 @@ function PostCard(props) {
       const mes = (date.getMonth() + 1).toString().padStart(2, '0'); // obtiene el mes (0-11) y lo convierte en string con 2 dígitos
       const anio = date.getFullYear(); // obtiene el año con 4 dígitos
       const createdAt = `${dia}/${mes}/${anio}`; // concatena los componentes de la fecha en el formato deseado
-      setNewDate(createdAt)
+      setDateFormat(createdAt)
     }
   }, [props?.createdAt])
   
@@ -126,7 +127,7 @@ function PostCard(props) {
         <PostContent>
           <TitlePost>{props.title}</TitlePost>
           <ContentPost className='content' dangerouslySetInnerHTML={{ __html: props.content }}></ContentPost>
-          <p className='date'>Date: {newDate}</p>
+          <Text className='date'>{dateFormat}</Text>
           <Btns className='btns'>
             <BtnEdit className='btn-edit'>
               <Link to={`/blog/edit/${props.id}`} >Edit post</Link>

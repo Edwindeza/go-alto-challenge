@@ -11,9 +11,9 @@ const Button = styled.button`
     cursor:pointer;
 `
 
-function ButtonSearch(props) {
+function ButtonSearch({searchButton}) {
   return (
-    <Button>
+    <Button onClick={searchButton}>
         SEARCH
     </Button>
   );

@@ -11,12 +11,12 @@ const Input = styled.input`
     padding-right:10px;
     box-sizing: border-box;
     outline: none;
-    
 `
 
-function InputSearch(props) {
+function InputSearch({onChange}) {
+
   return (
-    <Input type='text' placeholder='Search value' />
+    <Input type='text' onChange={onChange} placeholder='Search value' />
   );
 }
 

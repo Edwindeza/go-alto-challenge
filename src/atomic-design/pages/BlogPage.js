@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import PostList from '../organisms/PostsList';
 import styled from 'styled-components';
@@ -24,17 +24,30 @@ const AddBtn = styled(Link)`
 `
 
 const BlogPage = () => {
-
+  const [searchParams] = useSearchParams();
   const [localPosts, setLocalPosts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredPosts, setFilteredPosts] = useState([])
 
-  const filteredPosts = localPosts.filter((post) =>
-    post.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+
   const getPosts= () => {
     const posts = getLocalStorageItem('posts')
     setLocalPosts(posts)
   }
+
+  const filterPosts = (value) => {
+    let tempPosts = [...localPosts];
+    if(value && value != ''){
+      tempPosts = localPosts.filter((post) =>
+        post.title.toLowerCase().includes(value.toLowerCase())
+      );
+    }
+    setFilteredPosts(tempPosts)
+  }
+
+  useEffect(() => {
+    const searchValue = searchParams.get('search');
+    filterPosts(searchValue)
+  }, [localPosts, searchParams])
 
   useEffect(() => {
     getPosts();
